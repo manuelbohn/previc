@@ -1,0 +1,635 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  man,floatsintext]{apa6}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{english}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+% Manuscript styling
+\usepackage{upgreek}
+\captionsetup{font=singlespacing,justification=justified}
+
+% Table formatting
+\usepackage{longtable}
+\usepackage{lscape}
+% \usepackage[counterclockwise]{rotating}   % Landscape page setup for large tables
+\usepackage{multirow}		% Table styling
+\usepackage{tabularx}		% Control Column width
+\usepackage[flushleft]{threeparttable}	% Allows for three part tables with a specified notes section
+\usepackage{threeparttablex}            % Lets threeparttable work with longtable
+
+% Create new environments so endfloat can handle them
+% \newenvironment{ltable}
+%   {\begin{landscape}\centering\begin{threeparttable}}
+%   {\end{threeparttable}\end{landscape}}
+\newenvironment{lltable}{\begin{landscape}\centering\begin{ThreePartTable}}{\end{ThreePartTable}\end{landscape}}
+
+% Enables adjusting longtable caption width to table width
+% Solution found at http://golatex.de/longtable-mit-caption-so-breit-wie-die-tabelle-t15767.html
+\makeatletter
+\newcommand\LastLTentrywidth{1em}
+\newlength\longtablewidth
+\setlength{\longtablewidth}{1in}
+\newcommand{\getlongtablewidth}{\begingroup \ifcsname LT@\roman{LT@tables}\endcsname \global\longtablewidth=0pt \renewcommand{\LT@entry}[2]{\global\advance\longtablewidth by ##2\relax\gdef\LastLTentrywidth{##2}}\@nameuse{LT@\roman{LT@tables}} \fi \endgroup}
+
+% \setlength{\parindent}{0.5in}
+% \setlength{\parskip}{0pt plus 0pt minus 0pt}
+
+% Overwrite redefinition of paragraph and subparagraph by the default LaTeX template
+% See https://github.com/crsh/papaja/issues/292
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{\parindent}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries\itshape\typesectitle}}
+
+\renewcommand{\subparagraph}[1]{\@startsection{subparagraph}{5}{1em}%
+  {0\baselineskip \@plus 0.2ex \@minus 0.2ex}%
+  {-\z@\relax}%
+  {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
+\makeatother
+
+% \usepackage{etoolbox}
+\makeatletter
+\patchcmd{\HyOrg@maketitle}
+  {\section{\normalfont\normalsize\abstractname}}
+  {\section*{\normalfont\normalsize\abstractname}}
+  {}{\typeout{Failed to patch abstract.}}
+\patchcmd{\HyOrg@maketitle}
+  {\section{\protect\normalfont{\@title}}}
+  {\section*{\protect\normalfont{\@title}}}
+  {}{\typeout{Failed to patch title.}}
+\makeatother
+
+\usepackage{xpatch}
+\makeatletter
+\xapptocmd\appendix
+  {\xapptocmd\section
+    {\addcontentsline{toc}{section}{\appendixname\ifoneappendix\else~\theappendix\fi\\: #1}}
+    {}{\InnerPatchFailed}%
+  }
+{}{\PatchFailed}
+\keywords{language development, vocabulary, individual differences, Item Response Models\newline\indent Word count: X}
+\usepackage{lineno}
+
+\linenumbers
+\usepackage{csquotes}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={PREVIC: An adaptive parent report measure of expressive vocabulary in children between 3 and 8 years of age},
+  pdfauthor={Manuel Bohn1,2, Julia Prein2, Jonas Engicht3, Daniel Haun2, Natalia Gagarina4, \& Tobias Koch3},
+  pdflang={en-EN},
+  pdfkeywords={language development, vocabulary, individual differences, Item Response Models},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{PREVIC: An adaptive parent report measure of expressive vocabulary in children between 3 and 8 years of age}
+\author{Manuel Bohn\textsuperscript{1,2}, Julia Prein\textsuperscript{2}, Jonas Engicht\textsuperscript{3}, Daniel Haun\textsuperscript{2}, Natalia Gagarina\textsuperscript{4}, \& Tobias Koch\textsuperscript{3}}
+\date{}
+
+
+\shorttitle{Parental report measure of vocabulary}
+
+\authornote{
+
+We thank Susanne Mauritz for her help with the data collection.
+
+The authors made the following contributions. Manuel Bohn: Conceptualization, Formal Analysis, Writing - Original Draft Preparation, Writing - Review \& Editing; Julia Prein: Conceptualization, Software, Writing - Review \& Editing; Jonas Engicht: Formal Analysis, Software, Writing - Original Draft Preparation, Writing - Review \& Editing; Daniel Haun: Conceptualization, Writing - Review \& Editing; Natalia Gagarina: Conceptualization, Writing - Review \& Editing; Tobias Koch: Formal Analysis, Writing - Review \& Editing.
+
+Correspondence concerning this article should be addressed to Manuel Bohn, Leuphana University Lüneburg, Universitätsallee 1, 21335 Lüneburg, Germany. E-mail: \href{mailto:manuel.bohn@leuphana.de}{\nolinkurl{manuel.bohn@leuphana.de}}
+
+}
+
+\affiliation{\vspace{0.5cm}\textsuperscript{1} Institute for Psychology, Leuphana University Lüneburg, Germany\\\textsuperscript{2} Department of Comparative Cultural Psychology, Max Planck Institute for Evolutionary Anthropology, Leipzig, Germany\\\textsuperscript{3} Institut of Psychology, Friedrich-Schiller-University Jena, Germany\\\textsuperscript{4} Leibniz-Zentrum Allgemeine Sprachwissenschaft, Berlin, Germany}
+
+\abstract{%
+Parent report measures have proven to be a valuable research tool to study early language development. Caregivers are given a list of words and are asked which of them their child has already used. However, most available measures are not suited for children beyond infancy, come with substantial licensing costs or lack a clear psychometric foundation. Here we present the PREVIC (Parent Report of Expressive Vocabulary in Children) an open access, high quality vocabulary checklist for German-speaking children between three and eight years of age. The PREVIC was constructed leveraging the advantages of Item Response Theory: we designed a large initial item pool of 379 words and collected data from N = 1190 caregivers of children between three and eight years of age. Based on this data, we computed a range of fit indices for each item (word) and used an automated item selection algorithm to compile a final pool that contains items that a) vary in difficulty and b) fit the Rasch (one-parameter logistic) model. The resulting task is highly reliable and shows convergent validity. The IRT-based construction allowed us to design an adaptive version of the task, which substantially reduces the duration of the task while retaining measurement precision. The task -- including the adaptive version -- was implemented as a website and is freely accessible online at \url{https://ccp-odc.eva.mpg.de/previc-demo/}. The PREVIC can easily be adapted to other languages and fills an important gap in the toolkit of researchers interested in language development.
+}
+
+
+
+\begin{document}
+\maketitle
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Learning language is one of the key developmental objectives for children. This learning process is highly variable and leads to persistent individual differences which are related to a wide range of outcome measures later in life (Bleses, Makransky, Dale, Højen, \& Ari, 2016; Bornstein, Hahn, Putnick, \& Pearson, 2018; Golinkoff, Hoff, Rowe, Tamis-LeMonda, \& Hirsh-Pasek, 2019; Marchman \& Fernald, 2008; Morgan, Farkas, Hillemeier, Hammer, \& Maczuga, 2015; Pace, Alper, Burchinal, Golinkoff, \& Hirsh-Pasek, 2019; Pace, Luo, Hirsh-Pasek, \& Golinkoff, 2017; Schoon, Parsons, Rush, \& Law, 2010; Walker, Greenwood, Hart, \& Carta, 1994). For example, in a longitudinal study spanning 29 years, Schoon et al. (2010) found that relatively poorer language skills at age five were associated with lower levels of mental health at age 34. Given the high predictive validity of early language abilities, researchers and practitioners alike need high-quality, easy access measures to assess individual differences. However, such measures are rare and those that exist often come with substantial licensing costs. In this paper, we describe the development of an open, efficient and valid measure of individual differences in expressive vocabulary.
+
+Child language measures can be broadly categorized into two types: direct and parent report measures. Direct measures are generally used with children of three years and older. Direct expressive language assessments involve prompting children to generate words or sentences in response to a stimulus, such as a picture or an object. Direct receptive language assessments reverse the logic and require children to match a verbal prompt with a picture or an object. Various direct measures tailored to different languages and age groups have been developed, including measures for English and German (Bohn et al., 2023; Dunn \& Dunn, 1965; Dunn, Dunn, Whetton, \& Burley, 1997; Glück \& Glück, 2011; Golinkoff et al., 2017; Kauschke \& Siegmüller, 2002; Kiese-Himmel, 2005; Lenhard, Lenhard, Segerer, \& Suggate, 2015). Additionally, standardized cognitive ability tests frequently incorporate direct language measures (e.g., Bayley, 2006; Gershon et al., 2013; Wechsler \& Kodama, 1949).
+
+Parent report measures in general are widely utilized in psychological research. They are particularly popular as screening methods to identify developmental delays (Diamond \& Squires, 1993; Pontoppidan, Niss, Pejtersen, Julian, \& Væver, 2017). However, it is important to acknowledge that parent reports come with certain caveats, including the potential for selective reporting and social desirability. As a consequence, providing a comprehensive assessment of the overall quality and usefulness of these measures is challenging (Morsbach \& Prinz, 2006). Nonetheless, some parent report measures have been found to be both reliable and valid (Bodnarchuk \& Eaton, 2004; Hornman, Kerstjens, Winter, Bos, \& Reijneveld, 2013; Ireton \& Glascoe, 1995; Macy, 2012; Saudino et al., 1998).
+
+In child language research, parent report measures are often utilized with very young children when direct assessment is challenging. One widely used measure is the MacArthur-Bates Communicative Development Inventories (CDI, Fenson et al., 2007). The CDI asks parents to to check those words from a checklist that they believe their child produces and/or understands. This measure has been adapted for a wide range of spoken and signed languages (see Frank, Braginsky, Yurovsky, \& Marchman, 2021 for an overview), with various versions available (e.g., Makransky, Dale, Havmose, \& Bleses, 2016; Mayor \& Mani, 2019), including an online version (DeMayo et al., 2021). Collaborative efforts have facilitated the pooling of CDI data from thousands of children learning different languages into centralized repositories (Frank, Braginsky, Yurovsky, \& Marchman, 2017; Jørgensen, Dale, Bleses, \& Fenson, 2010). Importantly, the CDI exhibits validity as parental reports align with direct observations and assessments of child language (Bornstein \& Haynes, 1998; Dale, 1991; Feldman et al., 2005; Fenson et al., 1994).
+
+However, the use of the CDI -- in typically developing children -- is limited to 37 months of age. Beyond this point, most children are reported to say all the words on the list. Consequently, there is a need for a comparable measure that can be applied to older children. Existing instruments focusing on general cognitive development often include language scales; however, these scales lack detailed information and fail to capture individual differences effectively (Ireton \& Glascoe, 1995). For example, the Ages and Stages Questionnaire (ASQ) at 36 months comprises only six items that encompass general communicative behavior, such as whether the child can say their full name when prompted (Squires, Bricker, Twombly, et al., 2009). One notable example of a dedicated language measure for older children is the Developmental Vocabulary Assessment for Parents (DVAP, Libertus, Odic, Feigenson, \& Halberda, 2015). The DVAP is derived from the words used in the Peabody Picture Vocabulary Test (PPVT, Dunn \& Dunn, 1965), a widely used direct measure of receptive vocabulary. As perhaps expected, the DVAP demonstrates high convergent validity, as evidenced by its strong correlation with the PPVT. However, the proprietary nature of the PPVT limits the utility of the DVAP for researchers.\footnote{When the first author approached the license holder of the PPVT in Germany to ask if we could use the German version of the PPVT to build a parental report measure, we were told that we would have to pay for every administration of the new measure and we would not be allowed to openly share the materials.} As a consequence, it is unlikely that a comparable ``success story'' -- as observed with the CDI -- will emerge where researchers have adapted the original English form to different languages and more efficient forms.
+
+A more general issue with existing language measures -- including PPVT and DVAP -- is a lack of psychometric grounding. Items that make up the scale are selected based on researchers intuitions and there is no clear measurement model that explicates how the different items and test scores are linked to the construct in question (Borsboom, 2006). Item response theory (IRT) provides a theoretical framework and a toolkit to develop tasks with a solid psychometric foundation (Kubinger, 2006; Lord, 2012). Within IRT, all items are assumed to measure the same latent construct. Each item is linked to the construct by a probability function (e.g.~a logistic curve) which determines how likely a particular response is for individuals with different values on the latent construct. The shape of this curve is defined by the difficulty of an item (i.e.~the value of the latent construct when the probability to solve the item is 50\%) and its discrimination (i.e.~the slope of the curve showing how the probability to solve the item changes with increasing levels on the latent construct). In a \emph{Rasch} model (or one-parameter IRT model), all items are assumed to have equal item discriminations, resulting in parallel item characteristic curves. The great benefit of IRT is that models are testable in that we can quantify the fit of each model and compare competing models. For each item, we can compute fit statistics that indicate how well the model captures the response pattern to the item. Test construction is straightforward in this framework; items are selected that improve the fit to the model. Besides many other advantages (e.g., objective specificity, sum scores can be used as sufficient statistics), the Rasch model also allows for adaptive testing. Here, individuals do not simply respond to all items in the task but only to a subset of optimally informative items given their -- constantly updated -- value on the latent construct.
+
+The downside of IRT-based test construction -- and probably the reason it is not used more often -- is that it requires a larger initial investment. To be able to remove items with a poor fit during the selection process requires an initial item pool that is substantially larger than the desired size of the final task. Adaptive testing also needs a large item pool so that there is a sufficient number of items that are optimally informative for different regions of the latent construct. Furthermore, to obtain solid estimates for the item parameters it takes large sample sizes. Yet, we believe that these disadvantages are clearly outweighed by the benefits that come with IRT-based test construction in the long run.
+
+\hypertarget{the-current-study}{%
+\section{The current study}\label{the-current-study}}
+
+Our goal was to develop a high-quality and easy-access vocabulary checklist beyond the CDI for children between three and eight years of age. To ensure the psychometric quality of the task and to allow for adaptive testing, we used IRT to guide item selection and the construction of the item pool. In particular, we constructed the item pool so that all items fit the simplest version of an IRT model, the one-parameter logistic (1PL) or Rasch model (Rasch, 1980). The main reason behind this fairly restrictive approach was that only when the Rasch model holds is the number of solved items (sum score) a sufficient statistic and can be used to represent an individual's value on the latent construct (Birnbaum, 1986). To ensure easy-access, we implemented the checklist as an interactive web-app. Furthermore, the task, the item pool and all associated materials are openly available for other researchers to use. In what follows, we describe the implementation of the task, the construction of the item pool and the item selection procedure. Finally, we report the results on a study assessing the convergent validity of a task that comprises all items in the pool.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+\hypertarget{task-design-an-implementation}{%
+\subsection{Task design an implementation}\label{task-design-an-implementation}}
+
+We decided to use an interactive format instead of presenting parents with a long list of words. The task was implemented as a web-app using \texttt{html} and \texttt{JavaScript} and ran in every modern web-browser on computers, tablets and smartphones. Words were presented one-by-one and caregivers could indicate whether or not their child says a word either by using the familiar swipe-left/swipe-right functionality, by clicking symbols or using arrow-keys on a keyboard (see Figure \ref{fig:fig1}A). For example, caregivers saw the word ``Jacke'' (en: jacket) on a card in the center of the screen; to report that their child says the word, they would swipe the card to the right side of the screen which would make the card go away and the next in the deck appear. We included a lightweight back-end that registered the last completed trial so that caregivers could take breaks and even switch devices during the task.
+
+For each child we created a personalized link that connected the caregiver's responses to the child's entry in our database. After clicking the link, participants saw a short video in which the first author introduced the rationale of the study. Next, they were introduced to the functionality of the task (Figure \ref{fig:fig1}A) and how to respond. We used the same instructions for how to judge whether a child says a word or not as the German version of the CDI (FRAKIS, Szagun, Stumper, \& Schramm, 2009).
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../graphs/fig1} 
+
+}
+
+\caption{Task implementation. (A) Instructions provided to parents demonstrating the functionality of the task. The word was presented on a card in the middle of the screen. Parents could indicate whether or not their child says a word by swiping the card left (no) or right (yes), touching or clicking the ``yes'' or ``no'' symbol or pressing the left or right arrow key on the keyboard. (B) Screenshot from the task presenting the German word Jacke (en: jacket).}\label{fig:fig1}
+\end{figure}
+
+\hypertarget{item-pool-generation}{%
+\subsection{Item pool generation}\label{item-pool-generation}}
+
+Our goal was to create an item pool with items of varying difficulty. We used age-of-acquisition (AoA) ratings as a rough indicator of anticipated item difficulty. Previous work has shown strong associations between AoA ratings and how likely children are to know a word (Bohn et al., 2023; Bohn, Tessler, Merrick, \& Frank, 2021). We started the process by compiling a list with AoA ratings for 3,921 German words from various sources (Birchenough, Davies, \& Connelly, 2017; Łuniewska et al., 2019; Schröder, Gemballa, Ruppin, \& Wartenburger, 2012). We excluded words with AoA ratings above ten. The remaining words were ordered by rated AoA and then split into ten lists with 344 words each. A research assistant with a background in linguistics went through the lists and selected words that a) were indicative of language abilities more broadly (avoiding very specialized terms) and b) that were different from one another in that they were semantically unrelated (to avoid words that are learned in the same context). For each list, we aimed for roughly 35 words; 17 nouns, nine verbs and nine adjectives. The so-generated item pool had 379 words, of which 197 were nouns, 92 were verbs and 90 were adjectives. Figure \ref{fig:fig2}A shows how the items were distributed across AoA ratings and word types.
+
+\hypertarget{data-collection}{%
+\subsection{Data collection}\label{data-collection}}
+
+Next, we aimed to collect data for all 379 items from a large sample of parents with children between three and eight years of age. Our goal was to have at least 100 complete responses per year (e.g.~100 parents with children between 3.0 and 4.0). This data would then be used to estimate item parameters to be used during the selection process.
+
+\hypertarget{participants}{%
+\subsubsection{Participants}\label{participants}}
+
+\begin{table}[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:tab1}Participants per age group and sex}
+
+\begin{tabular}{lll}
+\toprule
+Age group & \multicolumn{1}{c}{N} & \multicolumn{1}{c}{female}\\
+\midrule
+3 - 4 years & 176 & 82\\
+4 - 5 years & 191 & 84\\
+5 - 6 years & 221 & 113\\
+6 - 7 years & 291 & 142\\
+7 - 8 years & 308 & 148\\
+> 8 years & 3 & 1\\
+\bottomrule
+\addlinespace
+\end{tabular}
+
+\begin{tablenotes}[para]
+\normalsize{\textit{Note.} Children in the > 8 years group were very close to 8, see Figure 2C}
+\end{tablenotes}
+
+\end{threeparttable}
+\end{center}
+
+\end{table}
+
+Participants were recruited via a database of children whose caregivers indicated an interest in participating in studies on child development and who additionally signed up for online studies. All children lived in Leipzig, Germany, an urban Central-European city with approximately 600,000 inhabitants. The city-wide median individual monthly net income in 2021 was \textasciitilde{} 1,600€. Children growing up in Leipzig mostly live in nuclear two-generational families. Socioeconomic status was not formally recorded, although the majority of families in the database come from mid to high socioeconomic backgrounds with high levels of parental education. In addition, it is very likely that the online format caused selective responding and skewed the sample towards highly motivated and interested families. Caregivers received an email with a personalized link to the study. Approximately one week after the first email, they received a reminder if they had not yet finished the study. We contacted caregivers of 4094 children; caregivers of 1826 children started the study of which 1190 (29.00 \%) completed all 379 items. All subsequent analyses are based only on the complete data. Table \ref{tab:tab1} shows the age and sex distribution of participants
+
+\hypertarget{descriptive-results}{%
+\subsubsection{Descriptive results}\label{descriptive-results}}
+
+Figure \ref{fig:fig2} visualizes the results. On an item level, we saw strong negative correlations between caregiver's responses and rated ages-of-acquisition. The less likely caregiver's were to say their child says a word, the higher was the rated AoA. This relation was the same for nouns, verbs and adjectives. On a child-level, we saw that the older children were, the more words they used according to their caregiver's. These results reflect highly expected patterns and served as a sanity check for the design and implementation of the task.
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../graphs/fig2} 
+
+}
+
+\caption{Initial item pool. (A) Distribution of items across word types and rated age-of-acquisition. (B) Item-based correlation between rated age-of-acquisition and caregiver responses by word type averaged across participants. (C) Child-based correlation between age and caregiver responses by word type averaged across items.}\label{fig:fig2}
+\end{figure}
+
+\hypertarget{item-selection}{%
+\subsection{Item selection}\label{item-selection}}
+
+The goal of the item selection procedure was to generate an item pool with items that fit the Rasch model. We selected items in three steps. In the first step, we excluded items using conventional cut-offs for indices that quantify the fir of each item to the Rasch model. The goal was to remove a large number of items with a poor fit to reduce the computational burden in subsequent steps. In step 2, we used an automated item selection procedure to select an optimal subset of items from the remaining pool. We focused on the fit of the Rasch model as well as variation in item difficulty (to measure in different regions of the latent dimension). Finally, in step 3, we submitted the items selected in step 2 to an analysis of differential item functioning (DIF).
+
+IRT-models were implemented in a Bayesian framework in \texttt{R} using the \texttt{brms} package (Bürkner, 2017, 2019) unless otherwise stated. We predicted the probability of a correct answer based on a participant's latent ability and item characteristics. We fit two classes of models: Rasch (1PL) Birnbaum (2PL) models. The main difference between these two models lies in their assumption about how the probability of solving an item changes with ability levels (item discrimination). Here, the Rasch model assumes that the rate of change (i.e.~the slope of the logistic curve) is the same for all items while the 2PL model allows item discrimination parameters to vary between items.
+
+\hypertarget{step-1-fit-based-item-selection}{%
+\subsubsection{Step 1: Fit-based item selection}\label{step-1-fit-based-item-selection}}
+
+We fit a Rasch Model to the data and computed In- and Outfit values based on draws from the model's posterior predictive distribution (using the function \texttt{add\_epred\_draws}) for each item and person combination. In- and Outfit quantify the deviation of a person's response to an item from what the model predicts based on the difficulty of an item and the person's ability parameter. The result was a distribution of values for each item and index. For each item, we then computed the mode for each index. The closer to 1 the index is, the better the fit. Figure \ref{fig:fig3} visualizes the results. We used the cut-off values suggested in the literature (Bond \& Fox, 2013; Debelak, Strobl, \& Zeigenfuse, 2022) and excluded items with In- or Outfit values below 0.7 and above 1.3. Like all heuristics, these cut-offs are to some extent arbitrary. Yet, in the present context they served the purpose of removing a large number of potentially unsuitable items. This procedure led us to exclude 167 of the 379 items in the pool, leaving 212 for the automated item selection.
+
+\hypertarget{step-2-automated-item-selection}{%
+\subsubsection{Step 2: Automated item selection}\label{step-2-automated-item-selection}}
+
+The goal of this step was to select items with different levels of difficulty that fit the Rasch model. Selecting items based on these criteria ensured that a) the final item pool allowed for precise measurement in different regions of the latent ability and b) the number of solved items is a sufficient statistic for an individual's ability. Such an item pool is then optimally suited for adaptive testing.
+
+First we defined an objective function that reflected the selection criteria which would later be used in the automated selection process. Items should vary in their difficulty; we quantified this requirement as the standard deviation of the distance (in difficulty estimates) between adjacent items. Lower values indicate smaller distances and thus an overall more equal spacing. Items should also fit the Rasch model; we quantified this requirement in three ways. First and second, we used the In- and Outfit values for each item computed in the previous step. Third, we computed modification indices for each item. For this, we re-fitted the Rasch model using the package \texttt{lavaan} (Rosseel, 2012) and used the function \texttt{modindices} to obtain modification indices. Broadly speaking, modification indices quantify the improvement in model fit (in terms of the chi-square test statistic) when an item would be dropped.
+
+The objective function was the sum of these four components. Before summation, we multiplied the different components by constants to bring them on a comparable scale and to emphasize certain components over others: the standard deviation for item difficulties was multiplied by -1/3, Infit values by -4, Outfit values by -2 and modification indices by -1/100. The resulting score was always negative so that larger individual values led to more negative values. Because the process described below aims to maximize the score, this meant minimizing the individual values.
+
+Following Bohn et al. (2023), we employed simulated annealing (Kirkpatrick, Gelatt Jr, \& Vecchi, 1983) as a method to identify the most optimal items for any given subset size. The process involves systematically exploring the vast space of possible subsets, commencing from a randomly selected initial subset. Subsequently, small random changes are proposed by exchanging some items within the subset under consideration with others located outside it. If a proposed change leads to an improvement in the objective function's value, the proposal is accepted, and the enhanced subset becomes the starting point for subsequent proposals.
+
+To prevent the process from becoming trapped in local optima, it probabilistically accepts proposals that decrease the value of the objective function. The probability of accepting a proposal that reduces the objective function is influenced by a parameter known as ``temperature,'' which gradually decreases from an initially high value to a lower value during the simulation. In the early ``hot'' phase, the process explores the search space more freely, accepting decreasing proposals often enough to enable movement between local optima separated by less effective subsets, facilitating the discovery of global optima. As the simulation progresses into the later ``cool'' phases, the process converges towards a more focused ``hill climbing'' search, where only increasing proposals are accepted. This fine-tunes the best subset discovered during the hot phase, resulting in a more refined and optimized solution.
+
+The simulated annealing algorithm finds the optimal items for a given size of the subset but does not answer the question of what the optimal size is. To answer this question, we applied the algorithm to subsets of different sizes. Our goal was to find the largest subset for which the Rasch model provided a good fit. For each size, we therefore compared the fit of a Rasch model to a 2PL model using Bayesian approximate leave-one-out cross-validation (Vehtari, Gelman, \& Gabry, 2017) based on differences in expected log posterior density (ELPD) estimates and the associated standard error (SE). Based on suggestions in the literature (Sivula, Magnusson, \& Vehtari, 2020), we considered models to be equivalent up to a point when the ELPD in favor of a model exceeded two times the standard error of the difference.
+
+Figure \ref{fig:fig3}B visualizes the model comparison and shows that the Rasch model provided a good fit for subsets up to 90 items. We therefore decided on 90 items as the size of the final item pool. We ran the simulated annealing algorithm 20 times and selected the 90 items that were returned most often (86 items were returned on every run).
+
+\hypertarget{step-3-differential-item-functioning}{%
+\subsubsection{Step 3: Differential item functioning}\label{step-3-differential-item-functioning}}
+
+The final step of item selection consisted of assessing differential item functioning (DIF, see Bürkner, 2019). DIF describes a situation when items show differential characteristics for subgroups that otherwise have the same overall score (Holland \& Wainer, 2012). We assessed DIF based on sex (male and female). We estimated separate item parameters for the two groups and assessed whether their 95\% CrI overlapped. Figure \ref{fig:fig3}C shows that the item parameters were very similar in the two subgroups. However, one item (``verloben'', en: to get engaged) had to be excluded. Thus, the size of the final item pool was 89 items, 43 (48\%) of which were nouns, 20 (22\%) were verbs and 26 (29\%) were adjectives.
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../graphs/fig3} 
+
+}
+
+\caption{Three steps of item selection. (A) In- and Outfit values for all 379 items in the initial item pool. Items that fell into the grey region (crosses) were excluded. Color shows the different word types. Dashed lines show cut-off values of 0.7 and 1.3. (B) Model comparison ratio comparing the fit of a Rasch model to the fit of a 2PL model for different numbers of items (y-axis). Each point shows an independent run of the item selection procedure and subsequent model comparison (five per subset). The x-axis title shows how the ratio is computed. Values left of 0 indicate a better fit of the Rasch model, values to the right a better fit of the 2PL model. The dashed line marks a ratio of 1, which we assumed to be the point when one of the models clearly provided a better fit. (C) Correlation between item parameters estimated separately by sex. Points show the mode of the posterior distribution for each item with 95\% CrIs. Point color and shape denote items that were excluded.}\label{fig:fig3}
+\end{figure}
+
+\hypertarget{psychometric-properties-of-the-final-item-pool}{%
+\subsection{Psychometric properties of the final item pool}\label{psychometric-properties-of-the-final-item-pool}}
+
+The final item pool consisted of 89 items of varying difficulty that fit the Rasch model (see Figure \ref{fig:fig4}A). Next, we investigated the reliability and convergent validity of a task including the full item pool (PREVIC).
+
+\hypertarget{reliability}{%
+\subsubsection{Reliability}\label{reliability}}
+
+We computed KR-20 (Kuder \& Richardson, 1937) and Andrich Reliability (Andrich, 1982). Both indices indicated excellent reliability (KR-20 = 0.97; Andrich = 0.97).
+
+\hypertarget{convergent-validity}{%
+\subsubsection{Convergent validity}\label{convergent-validity}}
+
+We assessed convergent validity by comparing PREVIC scores to a direct assessment of children's receptive vocabulary using the oREV (Bohn et al., 2023). The oREV asks children to select a picture (out of four) upon hearing a word. It has 22 items which fit the Rasch model. Because the oREV is also available as a web application, we sent out emails to all caregivers who provided complete data in the data collection that led to the construction of the PREVIC (N = 1190) and asked them to have their child complete the oREV. We obtained oREV data from 692 children (337 female, \(m_{age}\) = 5.78, range = 3.02 - 8.00) which corresponds to a response rate of \textasciitilde{} 58\%.
+
+We found a substantial correlation between caregiver's answers to questions about their children's expressive vocabulary in the PREVIC and a direct assessment of children's receptive vocabulary in the oREV (\emph{r} = 0.54; 95\% CI = 0.48 -- 0.59; Figure \ref{fig:fig4}B)). Furthermore, when predicting PREVIC scores by oREV scores and age in a binomial model, we found that oREV scores had a large and positive effect (Figure \ref{fig:fig4}C). These results speak to the convergent validity of the PREVIC.
+
+
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{../graphs/fig4} 
+
+}
+
+\caption{Item characteristics and validity. (A) Item characteristic curves for the 89 items colored by word type. Inset on the upper left shows the test information curve. (B) Correlation between PREVIC and oREV scores.Points show aggregated scores of individuals in the two tasks. Points have minimal horizontal noise added to avoid overplotting. The red line shows a regression line (with 95\% CI) based on a linear model. (C) Posterior model estimates for oREV scores and age (scaled) in a model predicting PREVIC scores. Points show posterior means with 95\% CrI.}\label{fig:fig4}
+\end{figure}
+
+\hypertarget{adaptive-testing}{%
+\subsection{Adaptive testing}\label{adaptive-testing}}
+
+The large and diverse item pool allowed us to to create an adaptive version of the PREVIC in addition to the complete checklist. The general idea of an adaptive test is to only show the caregiver the most informative items given the (continuously updated) ability. As a consequence, items that are too easy or too difficult are omitted and the test becomes substantially shorter while retaining the same level of measurement precision.
+
+In order to determine the most informative items, the ability of the child has to be estimated during the test. To achieve this, we implemented a maximum likelihood estimator in \texttt{html} and \texttt{TypeScript} (which is compiled to native \texttt{JavaScript}). As a consequence, the adaptive version is still fully portable and can be run in any modern web-browser. The estimated ability ``is the ability value that maximizes the likelihood function \(L(\theta)\)'' (Magis \& Raîche, 2012) given the item response \(y_i\) (either 0 or 1) and the item difficulty \(\alpha_i\) (Eid, 2011; Eid \& Schmidt, 2014):
+
+\[
+L(\theta) = \prod_{i = 1}^{p} \frac{\exp^{y_i * (\theta - \alpha_i)}}{1 + \exp^{\theta - \alpha_i}}
+\] The maximum likelihood estimation is implemented using a line search algorithm that converges when the maximum of the likelihood distribution has been reached. Based on the estimated ability, the program will then select the next item from the pool so that the difficulty is nearest to the current ability level (Urry, 1970). This procedure is equivalent to selecting items with the maximum information criterion when using a Rasch model (Magis \& Raîche, 2012).
+
+At the beginning of the test, the ability level is set to 0. A person specific ability estimation is also not possible using Maximum Likelihood after the first item and we therefore followed the convention to set the ability level to -4 if the answer was ``no'' and 4 if the answer was ``yes'' (e.g.~implemented in the \texttt{R} package \texttt{catR}, Magis \& Barrada, 2017). The test then continues until a pre-specified level of measurement precision (standard error of the ability estimate) is reached or until all items have been used. Users can set the desired level of measurement precision at the beginning of the test (e.g.~SE of 0.3, 0.4 or 0.5), which again influences its length (larger SE means shorter test). In the end, the user downloads a file containing the final ability level, the SE at which the test stopped, the answered items (including the word itself and its difficulty) and the participant's response pattern.
+
+We validated the implementation of our estimator by comparing its ability estimates and selected items to those of the \texttt{catR} package in a number of simulations. The results were identical and only differed beyond the fifth decimal because \texttt{JavaScript} and \texttt{R} differ in how many decimal places they use for computations. The code to run the simulations can be found in the associated online repository.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+This paper describes the construction and validation of the PREVIC, an adaptive parent report measure of productive vocabulary in German-speaking children between three and eight years of age. Following the logic of widely-used vocabulary checklists for younger children (Fenson et al., 2007), the PREVIC presents caregivers with individual words and asks if the child speaks this word. The items (words) that make up the PREVIC were selected using Item-Response theory (IRT): we started with a large initial item pool of 379 words from which we selected 89 items that fit the Rasch model. The resulting task is highly reliable and shows convergent validity when contrasted with a direct receptive vocabulary measure. Leveraging IRT allowed us to devise an adaptive version of the task in which only the most informative items are presented. The task is implemented as a web-app and can be used with any device that runs a modern web browser. The task itself (adaptive and complete checklist) as well as the source code are freely available online.
+
+The PREVIC fills an important gap in the tool kit of researchers studying language development beyond infancy. It complements direct assessments of children's vocabulary by providing an additional perspective on children's vocabulary skills. Parents observe children for extended periods of time and their assessment therefore provides a more aggregated measure. Parent reports are also immune to momentary fluctuations in children's motivation and attention that might influence the results of direct assessments. Nevertheless, parental reports remain indirect measures and are ideally combined with direct assessments whenever feasible. Given that the PREVIC is short -- in particular the adaptive version rarely takes more than five minutes to complete -- it can easily be filled out by parents during a lab visit. Its implementation as a web-app even allows for sending it to families before or after a visit.
+
+At present, the PREVIC is only available in German. However, with inclusivity and broad applicability in mind, we have made the entire source code available. This not only facilitates its adaptation to other languages and allows researchers to use the same user interface. Encouragingly, preliminary feedback indicates that parents find the interface intuitive and user-friendly. The CDI has seen expansive adaptation across various languages (see Frank et al., 2021 for a summary). Such adaptations are usually not complete translations in that some words are removed and others added to capture the linguistic nuances and specificities of each language. For the adaptation of the PREVIC to new languages, a comprehensive reassessment of item properties would be highly desirable. For adaptive testing, it would even be mandatory. Taken together, we hope that our commitment to openness will put the PREVIC on a similar trajectory as the CDI.
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+The sample we tested was not a representative sample: It only contained families living in Leipzig, Germany who volunteered to participate in research on child development \emph{and} who additionally indicated that they were interested in participating in online studies. These multiple steps of (self-)selection most likely skewed the sample to more affluent and educated parents, though we have no demographic data to assess this claim. We think the most likely consequence is that the variation in our sample was reduced compared to the general population and that the probability of knowing a particular word would be somewhat lower in a representative sample. The data we collected during the construction of the PREVIC should therefore not be seen as a normative data set. Instead, the PREVIC is first and foremost a research tool that can be used to measure variation in receptive vocabulary in a given sample.
+
+\hypertarget{conclusion}{%
+\subsection{Conclusion}\label{conclusion}}
+
+We designed the PREVIC with a commitment to psychometric rigor; its grounding in Item-Response Theory provides a clear measurement model and specifies how individual items relate to each other and the underlying psychological ability. This approach not only strengthens the PREVIC's validity in assessing receptive vocabulary but also serves as a methodological reference for developing tests in other areas. By making the PREVIC openly accessible, we actively contribute to the collective resource pool for researchers in language development, ensuring that they have another reliable tool at their disposal.
+
+\hypertarget{open-practices-statement}{%
+\section{Open Practices Statement}\label{open-practices-statement}}
+
+The task can be accessed via the following website: \url{https://ccp-odc.eva.mpg.de/previc/}. The corresponding source code can be found in the following repository: \url{https://github.com/ccp-eva/previc-demo}. The data sets generated during and/or analysed during the current study are available in the following repository: \url{https://github.com/ccp-eva/previc-analysis/}. Data collection was preregistered at: \url{https://osf.io/utzfh}.
+
+\newpage
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-andrich1982index}{}}%
+Andrich, D. (1982). An index of person separation in latent trait theory, the traditional KR. 20 index, and the guttman scale response pattern. \emph{Education Research and Perspectives}, \emph{9}(1), 95--104.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bayley2006bayley}{}}%
+Bayley, N. (2006). \emph{Bayley scales of infant and toddler development--third edition}. San Antonio, TX: Harcourt Assessment.
+
+\leavevmode\vadjust pre{\hypertarget{ref-birchenough2017rated}{}}%
+Birchenough, J. M., Davies, R., \& Connelly, V. (2017). Rated age-of-acquisition norms for over 3,200 german words. \emph{Behavior Research Methods}, \emph{49}(2), 484--501.
+
+\leavevmode\vadjust pre{\hypertarget{ref-birnbaum1968test}{}}%
+Birnbaum, A. (1986). Test scores, sufficient statistics, and the information structures of tests. In F. M. L. \& M. R. Novick (Ed.), \emph{Statistical theories of mental test scores}. Addison \& Wesley.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bleses2016early}{}}%
+Bleses, D., Makransky, G., Dale, P. S., Højen, A., \& Ari, B. A. (2016). Early productive vocabulary predicts academic achievement 10 years later. \emph{Applied Psycholinguistics}, \emph{37}(6), 1461--1476.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bodnarchuk2004can}{}}%
+Bodnarchuk, J. L., \& Eaton, W. O. (2004). Can parent reports be trusted?: Validity of daily checklists of gross motor milestone attainment. \emph{Journal of Applied Developmental Psychology}, \emph{25}(4), 481--490.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bohn2023orev}{}}%
+Bohn, M., Prein, J., Koch, T., Bee, R. M., Delikaya, B., Haun, D., \& Gagarina, N. (2023). oREV: An item response theory-based open receptive vocabulary task for 3-to 8-year-old children. \emph{Behavior Research Methods}, 1--11.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bohn2021young}{}}%
+Bohn, M., Tessler, M. H., Merrick, M., \& Frank, M. C. (2021). How young children integrate information sources to infer the meaning of words. \emph{Nature Human Behaviour}, \emph{5}(8), 1046--1054.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bond2013applying}{}}%
+Bond, T. G., \& Fox, C. M. (2013). \emph{Applying the rasch model: Fundamental measurement in the human sciences}. Psychology Press.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bornstein2018stability}{}}%
+Bornstein, M. H., Hahn, C.-S., Putnick, D. L., \& Pearson, R. M. (2018). Stability of core language skill from infancy to adolescence in typical and atypical development. \emph{Science Advances}, \emph{4}(11), eaat7422.
+
+\leavevmode\vadjust pre{\hypertarget{ref-bornstein1998vocabulary}{}}%
+Bornstein, M. H., \& Haynes, O. M. (1998). Vocabulary competence in early childhood: Measurement, latent construct, and predictive validity. \emph{Child Development}, \emph{69}(3), 654--671.
+
+\leavevmode\vadjust pre{\hypertarget{ref-borsboom2006attack}{}}%
+Borsboom, D. (2006). The attack of the psychometricians. \emph{Psychometrika}, \emph{71}(3), 425--440.
+
+\leavevmode\vadjust pre{\hypertarget{ref-burkner2017brms}{}}%
+Bürkner, P.-C. (2017). Brms: An r package for bayesian multilevel models using stan. \emph{Journal of Statistical Software}, \emph{80}(1), 1--28.
+
+\leavevmode\vadjust pre{\hypertarget{ref-burkner2019bayesian}{}}%
+Bürkner, P.-C. (2019). Bayesian item response modeling in r with brms and stan. \emph{arXiv Preprint arXiv:1905.09501}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-dale1991validity}{}}%
+Dale, P. S. (1991). The validity of a parent report measure of vocabulary and syntax at 24 months. \emph{Journal of Speech, Language, and Hearing Research}, \emph{34}(3), 565--571.
+
+\leavevmode\vadjust pre{\hypertarget{ref-debelak2022introduction}{}}%
+Debelak, R., Strobl, C., \& Zeigenfuse, M. D. (2022). \emph{An introduction to the rasch model with examples in r}. Crc Press.
+
+\leavevmode\vadjust pre{\hypertarget{ref-demayo2021web}{}}%
+DeMayo, B., Kellier, D., Braginsky, M., Bergmann, C., Hendriks, C., Rowland, C. F., \ldots{} Marchman, V. (2021). Web-CDI: A system for online administration of the MacArthur-bates communicative development inventories. \emph{Language Development Research}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-diamond1993role}{}}%
+Diamond, K. E., \& Squires, J. (1993). The role of parental report in the screening and assessment of young children. \emph{Journal of Early Intervention}, \emph{17}(2), 107--115.
+
+\leavevmode\vadjust pre{\hypertarget{ref-dunn1965peabody}{}}%
+Dunn, L. M., \& Dunn, L. M. (1965). \emph{Peabody picture vocabulary test}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-dunn1997british}{}}%
+Dunn, L. M., Dunn, L. M., Whetton, C., \& Burley, J. (1997). British picture vocabulary scale 2nd edition (BPVS-II). \emph{Windsor, Berks: NFER-Nelson}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-eid2011}{}}%
+Eid, M. (2011). \emph{Testtheorie} (Erscheint: ET unbestimmt). Göttingen: Hogrefe.
+
+\leavevmode\vadjust pre{\hypertarget{ref-eid2014testtheorie}{}}%
+Eid, M., \& Schmidt, K. (2014). \emph{Testtheorie und testkonstruktion}. Hogrefe Verlag GmbH \& Company KG.
+
+\leavevmode\vadjust pre{\hypertarget{ref-feldman2005concurrent}{}}%
+Feldman, H. M., Dale, P. S., Campbell, T. F., Colborn, D. K., Kurs-Lasky, M., Rockette, H. E., \& Paradise, J. L. (2005). Concurrent and predictive validity of parent reports of child language at ages 2 and 3 years. \emph{Child Development}, \emph{76}(4), 856--868.
+
+\leavevmode\vadjust pre{\hypertarget{ref-fenson2007macarthur}{}}%
+Fenson, L. et al. (2007). \emph{MacArthur-bates communicative development inventories}. Paul H. Brookes Publishing Company Baltimore, MD.
+
+\leavevmode\vadjust pre{\hypertarget{ref-fenson1994variability}{}}%
+Fenson, L., Dale, P. S., Reznick, J. S., Bates, E., Thal, D. J., Pethick, S. J., \ldots{} Stiles, J. (1994). Variability in early communicative development. \emph{Monographs of the Society for Research in Child Development}, i--185.
+
+\leavevmode\vadjust pre{\hypertarget{ref-frank2017wordbank}{}}%
+Frank, M. C., Braginsky, M., Yurovsky, D., \& Marchman, V. A. (2017). Wordbank: An open repository for developmental vocabulary data. \emph{Journal of Child Language}, \emph{44}(3), 677--694.
+
+\leavevmode\vadjust pre{\hypertarget{ref-frank2021variability}{}}%
+Frank, M. C., Braginsky, M., Yurovsky, D., \& Marchman, V. A. (2021). \emph{Variability and consistency in early language learning: The wordbank project}. MIT Press.
+
+\leavevmode\vadjust pre{\hypertarget{ref-gershon2013iv}{}}%
+Gershon, R. C., Slotkin, J., Manly, J. J., Blitz, D. L., Beaumont, J. L., Schnipke, D., et al.others. (2013). IV. NIH toolbox cognition battery (CB): Measuring language (vocabulary comprehension and reading decoding). \emph{Monographs of the Society for Research in Child Development}, \emph{78}(4), 49--69.
+
+\leavevmode\vadjust pre{\hypertarget{ref-gluck2011wortschatz}{}}%
+Glück, C. W., \& Glück, C. W. (2011). \emph{Wortschatz-und wortfindungstest f{ü}r 6-bis 10-j{ä}hrige (WWT 6-10)}. Urban \& Fischer.
+
+\leavevmode\vadjust pre{\hypertarget{ref-golinkoff2017user}{}}%
+Golinkoff, R. M., De Villiers, J. G., Hirsh-Pasek, K., Iglesias, A., Wilson, M. S., Morini, G., \& Brezack, N. (2017). \emph{User's manual for the quick interactive language screener (QUILS): A measure of vocabulary, syntax, and language acquisition skills in young children}. Paul H. Brookes Publishing Company.
+
+\leavevmode\vadjust pre{\hypertarget{ref-golinkoff2019language}{}}%
+Golinkoff, R. M., Hoff, E., Rowe, M. L., Tamis-LeMonda, C. S., \& Hirsh-Pasek, K. (2019). Language matters: Denying the existence of the 30-million-word gap has serious consequences. \emph{Child Development}, \emph{90}(3), 985--992.
+
+\leavevmode\vadjust pre{\hypertarget{ref-holland2012differential}{}}%
+Holland, P. W., \& Wainer, H. (2012). \emph{Differential item functioning}. Routledge.
+
+\leavevmode\vadjust pre{\hypertarget{ref-hornman2013validity}{}}%
+Hornman, J., Kerstjens, J. M., Winter, A. F. de, Bos, A. F., \& Reijneveld, S. A. (2013). Validity and internal consistency of the ages and stages questionnaire 60-month version and the effect of three scoring methods. \emph{Early Human Development}, \emph{89}(12), 1011--1015.
+
+\leavevmode\vadjust pre{\hypertarget{ref-ireton1995assessin}{}}%
+Ireton, H., \& Glascoe, F. P. (1995). Assessin children's development using parents' reports: The child development inventory. \emph{Clinical Pediatrics}, \emph{34}(5), 248--255.
+
+\leavevmode\vadjust pre{\hypertarget{ref-jorgensen2010clex}{}}%
+Jørgensen, R. N., Dale, P. S., Bleses, D., \& Fenson, L. (2010). CLEX: A cross-linguistic lexical norms database. \emph{Journal of Child Language}, \emph{37}(2), 419--428.
+
+\leavevmode\vadjust pre{\hypertarget{ref-kauschke2002patholinguistische}{}}%
+Kauschke, C., \& Siegmüller, J. (2002). \emph{Patholinguistische diagnostik bei sprachentwicklungsst{ö}rungen: Diagnostikband phonologie}. Urban \& Fischer.
+
+\leavevmode\vadjust pre{\hypertarget{ref-kiese2005awst}{}}%
+Kiese-Himmel, C. (2005). AWST-r-aktiver wortschatztest f{ü}r 3-bis 5-j{ä}hrige kinder (AWST-r--active vocabulary test for 3-to 5-year-old children). \emph{G{ö}ttingen: Hogrefe}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-kirkpatrick1983optimization}{}}%
+Kirkpatrick, S., Gelatt Jr, C. D., \& Vecchi, M. P. (1983). Optimization by simulated annealing. \emph{Science}, \emph{220}(4598), 671--680.
+
+\leavevmode\vadjust pre{\hypertarget{ref-kubinger2006psychologische}{}}%
+Kubinger, K. D. (2006). \emph{Psychologische diagnostik: Theorie und praxis psychologischen diagnostizierens}. Hogrefe Verlag.
+
+\leavevmode\vadjust pre{\hypertarget{ref-kuder1937theory}{}}%
+Kuder, G. F., \& Richardson, M. W. (1937). The theory of the estimation of test reliability. \emph{Psychometrika}, \emph{2}(3), 151--160.
+
+\leavevmode\vadjust pre{\hypertarget{ref-lenhard2015peabody}{}}%
+Lenhard, A., Lenhard, W., Segerer, R., \& Suggate, S. (2015). \emph{Peabody picture vocabulary test-4. Ausgabe: Deutsche fassung}. Frankfurt am Main: Pearson Assessment.
+
+\leavevmode\vadjust pre{\hypertarget{ref-libertus2015developmental}{}}%
+Libertus, M. E., Odic, D., Feigenson, L., \& Halberda, J. (2015). A developmental vocabulary assessment for parents (DVAP): Validating parental report of vocabulary size in 2-to 7-year-old children. \emph{Journal of Cognition and Development}, \emph{16}(3), 442--454.
+
+\leavevmode\vadjust pre{\hypertarget{ref-lord2012applications}{}}%
+Lord, F. M. (2012). \emph{Applications of item response theory to practical testing problems}. Routledge.
+
+\leavevmode\vadjust pre{\hypertarget{ref-luniewska2019age}{}}%
+Łuniewska, M., Wodniecka, Z., Miller, C. A., Smolik, F., Butcher, M., Chondrogianni, V., et al.others. (2019). Age of acquisition of 299 words in seven languages: American english, czech, gaelic, lebanese arabic, malay, persian and western armenian. \emph{PloS One}, \emph{14}(8), e0220611.
+
+\leavevmode\vadjust pre{\hypertarget{ref-macy2012evidence}{}}%
+Macy, M. (2012). The evidence behind developmental screening instruments. \emph{Infants \& Young Children}, \emph{25}(1), 19--61.
+
+\leavevmode\vadjust pre{\hypertarget{ref-catR}{}}%
+Magis, D., \& Barrada, J. R. (2017). Computerized adaptive testing with {R}: Recent updates of the package {catR}. \emph{Journal of Statistical Software, Code Snippets}, \emph{76}(1), 1--19. \url{https://doi.org/10.18637/jss.v076.c01}
+
+\leavevmode\vadjust pre{\hypertarget{ref-magis2012}{}}%
+Magis, D., \& Raîche, G. (2012). Random Generation of Response Patterns under Computerized Adaptive Testing with the R Package catR. \emph{Journal of Statistical Software}, \emph{48}(8). \url{https://doi.org/10.18637/jss.v048.i08}
+
+\leavevmode\vadjust pre{\hypertarget{ref-makransky2016item}{}}%
+Makransky, G., Dale, P. S., Havmose, P., \& Bleses, D. (2016). An item response theory--based, computerized adaptive testing version of the MacArthur--bates communicative development inventory: Words \& sentences (CDI: WS). \emph{Journal of Speech, Language, and Hearing Research}, \emph{59}(2), 281--289.
+
+\leavevmode\vadjust pre{\hypertarget{ref-marchman2008speed}{}}%
+Marchman, V. A., \& Fernald, A. (2008). Speed of word recognition and vocabulary knowledge in infancy predict cognitive and language outcomes in later childhood. \emph{Developmental Science}, \emph{11}(3), F9--F16.
+
+\leavevmode\vadjust pre{\hypertarget{ref-mayor2019short}{}}%
+Mayor, J., \& Mani, N. (2019). A short version of the MacArthur--bates communicative development inventories with high validity. \emph{Behavior Research Methods}, \emph{51}(5), 2248--2255.
+
+\leavevmode\vadjust pre{\hypertarget{ref-morgan201524}{}}%
+Morgan, P. L., Farkas, G., Hillemeier, M. M., Hammer, C. S., \& Maczuga, S. (2015). 24-month-old children with larger oral vocabularies display greater academic and behavioral functioning at kindergarten entry. \emph{Child Development}, \emph{86}(5), 1351--1370.
+
+\leavevmode\vadjust pre{\hypertarget{ref-morsbach2006understanding}{}}%
+Morsbach, S. K., \& Prinz, R. J. (2006). Understanding and improving the validity of self-report of parenting. \emph{Clinical Child and Family Psychology Review}, \emph{9}, 1--21.
+
+\leavevmode\vadjust pre{\hypertarget{ref-pace2019measuring}{}}%
+Pace, A., Alper, R., Burchinal, M. R., Golinkoff, R. M., \& Hirsh-Pasek, K. (2019). Measuring success: Within and cross-domain predictors of academic and social trajectories in elementary school. \emph{Early Childhood Research Quarterly}, \emph{46}, 112--125.
+
+\leavevmode\vadjust pre{\hypertarget{ref-pace2017identifying}{}}%
+Pace, A., Luo, R., Hirsh-Pasek, K., \& Golinkoff, R. M. (2017). Identifying pathways between socioeconomic status and language development. \emph{Annual Review of Linguistics}, \emph{3}, 285--308.
+
+\leavevmode\vadjust pre{\hypertarget{ref-pontoppidan2017parent}{}}%
+Pontoppidan, M., Niss, N. K., Pejtersen, J. H., Julian, M. M., \& Væver, M. S. (2017). Parent report measures of infant and toddler social-emotional development: A systematic review. \emph{Family Practice}, \emph{34}(2), 127--137.
+
+\leavevmode\vadjust pre{\hypertarget{ref-rasch1980probabilistic}{}}%
+Rasch, G. (1980). \emph{Probabilistic models for some intelligence and attainment tests.} University of Chicago Press.
+
+\leavevmode\vadjust pre{\hypertarget{ref-rosseel2012lavaan}{}}%
+Rosseel, Y. (2012). Lavaan: An r package for structural equation modeling. \emph{Journal of Statistical Software}, \emph{48}, 1--36.
+
+\leavevmode\vadjust pre{\hypertarget{ref-saudino1998validity}{}}%
+Saudino, K. J., Dale, P. S., Oliver, B., Petrill, S. A., Richardson, V., Rutter, M., \ldots{} Plomin, R. (1998). The validity of parent-based assessment of the cognitive abilities of 2-year-olds. \emph{British Journal of Developmental Psychology}, \emph{16}(3), 349--362.
+
+\leavevmode\vadjust pre{\hypertarget{ref-schoon2010children}{}}%
+Schoon, I., Parsons, S., Rush, R., \& Law, J. (2010). Children's language ability and psychosocial development: A 29-year follow-up study. \emph{Pediatrics}, \emph{126}(1), e73--e80.
+
+\leavevmode\vadjust pre{\hypertarget{ref-schroder2012german}{}}%
+Schröder, A., Gemballa, T., Ruppin, S., \& Wartenburger, I. (2012). German norms for semantic typicality, age of acquisition, and concept familiarity. \emph{Behavior Research Methods}, \emph{44}(2), 380--394.
+
+\leavevmode\vadjust pre{\hypertarget{ref-sivula2020uncertainty}{}}%
+Sivula, T., Magnusson, M., \& Vehtari, A. (2020). Uncertainty in bayesian leave-one-out cross-validation based model comparison. \emph{arXiv Preprint arXiv:2008.10296}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-squires2009ages}{}}%
+Squires, J., Bricker, D. D., Twombly, E., et al. (2009). \emph{Ages \& stages questionnaires}. Paul H. Brookes Baltimore, MD.
+
+\leavevmode\vadjust pre{\hypertarget{ref-szagun2009fragebogen}{}}%
+Szagun, G., Stumper, B., \& Schramm, S. A. (2009). \emph{Fragebogen zur fr{ü}hkindlichen sprachentwicklung (FRAKIS) und FRAKIS-k (kurzform)}. Universitätsverlag Potsdam.
+
+\leavevmode\vadjust pre{\hypertarget{ref-urry}{}}%
+Urry, V. W. (1970). \emph{A monte carlo investigation of logistic mental test models} (PhD thesis). United States -- Indiana. Retrieved from \url{https://www.proquest.com/docview/302519686/citation/F24B5FB611144881PQ/1}
+
+\leavevmode\vadjust pre{\hypertarget{ref-vehtari2017practical}{}}%
+Vehtari, A., Gelman, A., \& Gabry, J. (2017). Practical bayesian model evaluation using leave-one-out cross-validation and WAIC. \emph{Statistics and Computing}, \emph{27}(5), 1413--1432.
+
+\leavevmode\vadjust pre{\hypertarget{ref-walker1994prediction}{}}%
+Walker, D., Greenwood, C., Hart, B., \& Carta, J. (1994). Prediction of school outcomes based on early language production and socioeconomic factors. \emph{Child Development}, \emph{65}(2), 606--621.
+
+\leavevmode\vadjust pre{\hypertarget{ref-wechsler1949wechsler}{}}%
+Wechsler, D., \& Kodama, H. (1949). \emph{Wechsler intelligence scale for children} (Vol. 1). Psychological corporation New York.
+
+\end{CSLReferences}
+
+
+\end{document}
