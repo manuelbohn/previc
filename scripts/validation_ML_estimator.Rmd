@@ -47,9 +47,27 @@ npx jest lib/ability_estimation.test.js
 
 ```
 
-The following plot shows the estimations errors when comparing our maximum likelihood estimation implementation with `catR`.
+Figure \@ref(fig:figs1) shows the distribution of estimation errors when comparing our maximum likelihood estimation implementation with `catR`. Differences between the two procedures are extremely small, all below 0.001. 
 
-![](images/error_plot.png)
+```{r figs1}
+library(ggplot2)
+library(jsonlite)
+library(ggthemes)
+
+data <- as.numeric(jsonlite::read_json("../saves/estimation_errors.json"))
+df <- data.frame(
+  id = c(1:length(data)),
+  error = data
+)
+
+ggplot(df, aes(x = error))+
+  geom_density(fill = "grey", col = NA)+
+  geom_jitter(aes(y = 0), pch = 1, width = 0.0001, alpha = 0.1, size =5)+
+  xlim(-0.0015,0.0015)+
+  labs(x = "Difference between Javascript and catR estimates", y = "Count")+
+  theme_few()
+
+```
 
 ## Verify Item Selection
 
