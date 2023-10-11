@@ -1,15 +1,6 @@
 ---
 title: "Adaptive Test"
-output:
-  word_document:
-    toc: no
-  pdf_document: 
-    keep_tex: yes
-#header-includes:
-#documentclass: apa7
-#classoption: doc
-bibliography: references.bib
-csl: apa.csl
+output: pdf_document
 editor_options:
   markdown:
     wrap: sentence
@@ -35,14 +26,15 @@ npm install
 ```
 
 After that, open an R IDE of your choice and install the required R packages with `renv::restore()`.
+Please ensure to set the working directory to the `validate_ML_est` folder.
 
 ## Verify Ability Estimation
 
-To verify maximum likelihood estimation, the script `generate_data.R` will use the package `catR` [@magis2012] to generate 500 item banks and corresponding response patterns for an ability level of 0.
+To verify maximum likelihood estimation, the script `generate_data.R` will use the package `catR` (Magis and Raîche 2012) to generate 500 item banks and corresponding response patterns for an ability level of 0.
 These will be saved as JSON files in the `generated` directory.
 
 The corresponding JavaScript file `ability_estimation.test.js` in the folder `lib` will load the item banks and response patterns to run the ability estimation algorithm.
-The result is then compared to `catR` [@magis2012] using the testing framework `Jest` [@jestjs/j2023].
+The result is then compared to `catR` (Magis and Raîche 2012) using the testing framework `Jest` (*Jestjs/Jest* 2023).
 The tests will succeed if the difference between the ability estimation result and the estimation from `catR` is close to 0.
 
 To generate the testing data and perform the tests run the following commands:
@@ -51,7 +43,12 @@ To generate the testing data and perform the tests run the following commands:
 Rscript generate_data.R
 npx jest lib/ability_estimation.test.js
 
+
 ```
+
+The following plot shows the estimations errors when comparing our maximum likelihood estimation implementation with `catR`.
+
+![](images/error_plot.png)
 
 ## Verify Item Selection
 
@@ -73,5 +70,12 @@ npx jest lib/item_selection.test.js
 
 # References
 
-::: {#refs}
-:::
+*Jestjs/Jest*.
+2023.
+Jest.
+<https://github.com/jestjs/jest>.
+
+Magis, David, and Gilles Raîche.
+2012.
+"Random Generation of Response Patterns Under Computerized Adaptive Testing with the R Package catR." *Journal of Statistical Software* 48 (8).
+<https://doi.org/10.18637/jss.v048.i08>.
