@@ -26,7 +26,8 @@ npm install
 ```
 
 After that, open an R IDE of your choice and install the required R packages with `renv::restore()`.
-Please ensure to set the working directory to the `validate_ML_est` folder.
+Please ensure to set the working directory to the `validate_ML_est` folder or simply open
+the `cat_simulation.Rproj` file.
 
 ## Verify Ability Estimation
 
