@@ -26,8 +26,7 @@ npm install
 ```
 
 After that, open an R IDE of your choice and install the required R packages with `renv::restore()`.
-Please ensure to set the working directory to the `validate_ML_est` folder or simply open
-the `cat_simulation.Rproj` file.
+Please ensure to set the working directory to the `validate_ML_est` folder or simply open the `cat_simulation.Rproj` file.
 
 ## Verify Ability Estimation
 
@@ -47,7 +46,8 @@ npx jest lib/ability_estimation.test.js
 
 ```
 
-Figure \@ref(fig:figs1) shows the distribution of estimation errors when comparing our maximum likelihood estimation implementation with `catR`. Differences between the two procedures are extremely small, all below 0.001. 
+Figure \@ref(fig:figs1) shows the distribution of estimation errors when comparing our maximum likelihood estimation implementation with `catR`.
+Differences between the two procedures are extremely small, all below 0.001.
 
 ```{r figs1}
 library(ggplot2)
@@ -64,7 +64,7 @@ ggplot(df, aes(x = error))+
   geom_density(fill = "grey", col = NA)+
   geom_jitter(aes(y = 0), pch = 1, width = 0.0001, alpha = 0.1, size =5)+
   xlim(-0.0015,0.0015)+
-  labs(x = "Difference between Javascript and catR estimates", y = "Count")+
+  labs(x = "Difference between JavaScript and catR estimates", y = "Count")+
   theme_few()
 
 ```
