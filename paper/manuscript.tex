@@ -138,13 +138,13 @@
   {\normalfont\normalsize\itshape\hspace{\parindent}{#1}\textit{\addperi}}{\relax}}
 \makeatother
 
-% \usepackage{etoolbox}
 \makeatletter
-\patchcmd{\HyOrg@maketitle}
+\usepackage{etoolbox}
+\patchcmd{\maketitle}
   {\section{\normalfont\normalsize\abstractname}}
   {\section*{\normalfont\normalsize\abstractname}}
   {}{\typeout{Failed to patch abstract.}}
-\patchcmd{\HyOrg@maketitle}
+\patchcmd{\maketitle}
   {\section{\protect\normalfont{\@title}}}
   {\section*{\protect\normalfont{\@title}}}
   {}{\typeout{Failed to patch title.}}
@@ -423,7 +423,7 @@ We designed the PREVIC with a commitment to psychometric rigor; its grounding in
 \hypertarget{open-practices-statement}{%
 \section{Open Practices Statement}\label{open-practices-statement}}
 
-The task can be accessed via the following website: \url{https://ccp-odc.eva.mpg.de/previc-demo/}. The corresponding source code can be found in the following repository: \url{https://github.com/ccp-eva/previc-demo}. The data sets generated during and/or analysed during the current study are available in the following repository: \url{https://github.com/ccp-eva/previc/}. Data collection was preregistered at: \url{https://osf.io/utzfh}.
+The task can be accessed via the following website: \url{https://ccp-odc.eva.mpg.de/previc-demo/}. The corresponding source code can be found in the following repository: \url{https://github.com/ccp-eva/previc-demo}. The data sets generated during and/or analysed during the current study are available in the following repository: \url{https://github.com/manuelbohn/previc/}. Data collection was preregistered at: \url{https://osf.io/utzfh}.
 
 \newpage
 
