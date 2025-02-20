@@ -6,7 +6,7 @@
 
 ------------------------------------------------------------------------
 
--   Bohn, M., Prein, J., Engicht, J., Haun, D. B. M., Gagarina, N., & Koch, T. (2023). [PREVIC: An adaptive parent report measure of expressive vocabulary in children between 3 and 8 years of age](https://psyarxiv.com/hvncp). *PsyArXiv*.
+Bohn, M., Prein, J., Engicht, J., Haun, D. B. M., Gagarina, N., & Koch, T. (2025). [PREVIC: An adaptive parent report measure of expressive vocabulary in children between 3 and 8 years of age](https://link.springer.com/article/10.3758/s13428-025-02615-4). *Behavior Research Methods*, 57, 95.
 
 ### Usage
 

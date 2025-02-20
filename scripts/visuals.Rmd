@@ -19,6 +19,7 @@ library(sf)
 library(grid)
 library(geomtextpath)
 library(ggridges)
+library(cowplot)
 ```
 
 ```{r}
@@ -107,6 +108,7 @@ ggarrange(wtd, wac,pac, nrow = 1, labels = c("A","B", "C"), widths = c(0.7,1,1.2
 ```
 ```{r}
 ggsave("../graphs/fig2.png", width = 12, height = 3, scale = 1.25, bg = "white")
+ggsave("../graphs/fig2.pdf", width = 12, height = 3, scale = 1.25, bg = "white")
 ```
 
 # Figure 3
@@ -204,6 +206,7 @@ plot_grid(p_fsi, p_mc, pdif, labels = c("A", "B", "C"), rel_widths = c(1,1,1), n
 
 ```{r}
 ggsave("../graphs/fig3.png", height = 3.5, width = 12, scale = 1.25, bg = "white")
+ggsave("../graphs/fig3.pdf", height = 3.5, width = 12, scale = 1.25, bg = "white")
 ```
 
 # Figure 4
@@ -322,4 +325,5 @@ plot_grid(p_iitic,
 
 ```{r}
 ggsave("../graphs/fig4.png", height = 5, width = 10, scale = 1.25, bg = "white")
+ggsave("../graphs/fig4.pdf", height = 5, width = 10, scale = 1.25, bg = "white")
 ```
