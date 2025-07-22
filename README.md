@@ -26,4 +26,5 @@ Link to task (in German): [PREVIC](https://ccp-odc.eva.mpg.de/previc-demo/)
 ├── graphs                    <-- figures in paper
 ├── paper                     <-- reproducible manuscript file
 └── saves                     <-- saved model outputs
+    └── item_pool.csv         <-- final item pool with item parameters
 ```
