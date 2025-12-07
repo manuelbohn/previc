@@ -32,7 +32,7 @@ score_fn <- function(subset) {
   mean_outfit <- -2*mean(outfit_dist)
   
   mi_sample <- mi[subset]
-  mi_dist <- unlist(lapply(outfit_sample, func2))
+  mi_dist <- unlist(lapply(mi_sample, func2))
   mean_mi <- -1*mean(mi_dist)
   
   return(spacing + mean_infit + mean_outfit+ mean_mi)
